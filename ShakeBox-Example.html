@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title> Shake-Box Login </title>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+          body{
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #5bd7f4, #51a5e5);
+            font-family: 'Poppins', sans-serif;
+          }
+          .login{
+            position: absolute;
+            left: 36%;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            border: solid #CDDAED 2px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.21);
+            width: 300px;
+            top: 30%;
+            margin-left: 0px;
+            transition: margin-left 0.1s ease-out, border-color 0.4s ease-out, box-shadow 0.4s ease-out;
+
+          }
+          .login.error {
+            border-color: #FF3700;
+            box-shadow: 0px 0px 10px #FF3700;
+          }
+          input{
+            display: block;
+            padding: 10px 0 10px 5px;
+            border: solid #CDDAED 2px;
+            border-radius: 5px;
+            position: relative;
+            width: 95%;
+            margin: 10px 0;
+          }
+          h1{
+            text-align: center;
+            font-size: 40px;
+            margin: 0 0 20px 0;
+            font-style: normal;
+            color: #51a5e5;
+            line-height: 1.1em;
+            font-weight: 300;
+          }
+          input[type=submit]{
+            width: 98%;
+            background: #51a5e5;
+            color: #fff;
+            border: none;
+            transition: background 0.5s ease-out;
+
+          }
+          input:focus{
+            outline: none;
+          }
+          .error input[type=submit]{
+            background: #00ffd5;
+          }
+        </style>
+        </head>
+    <body>
+      <!--Ora andiamo ad inserire l'effetto Shake, con l'aiuto di JS-->
+<script>
+  function checkForm(f){
+    const all = f.parentElement.elements.length;
+    let c = 0;
+    for (var i = 0; i < f.parentElement.elements.length; i++){
+    if (f.parentElement.elements[i].value !=='') {
+      c++;
+    }
+    else {
+      (f.parentElement.elements[i].focus());
+      break;
+    }
+    }
+    if (c<all) {
+      event.preventDefault();
+      shake('loginForm');
+    }
+  }
+  function shake(elid){
+    const elem = document.getElementById(elid);
+    var i = 0;
+    elem.classList.add('error');
+    var t = setInterval(function(){
+      i++;
+      if (i === 1){
+        elem.style.marginLeft = '-10px';
+      }
+      else if (i === 2) {
+        elem.style.marginLeft = '10px';
+      }
+      else if (i === 3){
+        elem.style.marginLeft = '0px';
+      }
+      else{
+        elem.classList.remove('error');
+        clearInterval(t);
+      }
+      
+    }, 50);
+  }
+</script>
+<div class="login" id="loginForm">
+  <h1>Effettua il login nel tuo account</h1>
+  <form>
+    <input type="email" placeholder="Email address" alt="Inserisci la tua email" required>
+    <input type="password" placeholder="Password" alt="Inserisci la tua password" required>
+    <input type="submit" onClick="checkForm(this)" value="Login">
+  </form>
+</div>
+    </body>
+    
+</html>
