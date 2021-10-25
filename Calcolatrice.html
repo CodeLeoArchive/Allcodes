@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <title>
+      Calcolatrice
+    </title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0px;
+      }
+      #calc input {
+        width: 40px;
+        height: 40px;
+        margin: 1px;
+        font-size: 15px;
+        border: none;
+      }
+      #calc input:hover {
+        background-color: #ccc;
+      }
+      #calc input:active {
+        background-color: #aaa;
+      }
+      #calcolatrice{
+        background-color: #eee;
+        width: fit-content;
+        padding: 10px 5px;
+        box-shadow: 1px 1px 7px #998;
+        margin: 5px;
+      }
+      .area{
+        width: 166px;
+        height: 30px;
+        padding: 2px;
+        text-align: right;
+        font-size: 20px;
+      }
+    </style>  
+    </head>
+  <body>
+    <div id="calcolatrice">
+      <form name="form">
+        <input class="area" name="area" value="" placeholder="0">
+        <table id="calc">
+          <tr>
+            <td></td>
+            <td><input type="button" value="C" onclick="reset()" ></td>
+            <td><input type="button" value="<" onclick="cancella();"></td>
+            <td><input type="button" value="/" onclick="dig('/');"></td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="7" onclick="dig(7);"></td>
+            <td> <input type="button" value="8" onclick="dig(8);"></td>
+            <td> <input type="button" value="9" onclick="dig(9);"></td>
+            <td> <input type="button" value="x" onclick="dig('*');"></td>
+         </tr>
+         <tr>
+          <td> <input type="button" value="4" onclick="dig(4)"></td>
+          <td> <input type="button" value="5" onclick="dig(5)"></td>
+          <td> <input type="button" value="6" onclick="dig(6)"></td>
+          <td> <input type="button" value="-" onclick="dig('-')"></td>
+         </tr>
+         <tr>
+          <td> <input type="button" value="1" onclick="dig(1);"></td>
+          <td> <input type="button" value="2" onclick="dig(2);"></td>
+          <td> <input type="button" value="3" onclick="dig(3);"></td>
+          <td> <input type="button" value="+" onclick="dig('+');"></td>
+         </tr>
+         <tr>
+          <td> <input type="button" value="0" onclick="dig(0);"></td>
+          <td> <input type="button" value="00" onclick="dig('00');"></td>
+          <td> <input type="button" value="," onclick="dig(',');"></td>  
+          <td rowspan="1"><input style="height: 42px;" type="button" value="=" onclick="somma();"></td>        
+         </tr>
+        </table>
+      </form>
+    </div>
+    <!--ADESSO ANDIAMO AD USARE JAVASCRIPT PER IL FUNZIONAMENTO DELLA CALCOLATRICE-->
+    <script>
+      function dig(n){
+        document.form.area.value = document.form.area.value+n
+      }
+      function somma(){
+       var c = document.form.area.value;
+       if (c){
+         document.form.area.value = eval(c);
+       }
+      }
+      function reset(){
+        document.form.area.value = '';
+      }
+      function cancella(){
+        var a = document.form.area.value;
+        document.form.area.value = a.substring(0, a.length-1);
+      }
+    </script>
+    <!--LA FUNZIONE RESET(), SERVE PER LA PROGRAMMAZIONE DEL TASTO RESET OVVERO "C", CHE VA AD ELIMINARE 
+      TUTTA LA STRINGA.
+    LA FUNZIONE CANCELLA(), PER IL TASTO CANCELLA "<", PER CANCELLARE QUELLO CHE ABBIAMO IMMESSO.
+    LA FUNZIONE SOMMA(), ESEGUE L'OPERAZIONE IMMESSA.
+     LA FUNZIONE DIG(), PERMETTE GRAZIE AD UNA LIBRERIA JS DI ESEGUIRE TUTTE LE NOSTRE OPERAZIONI.
+    
+    
+    ADESSO PASSIAMO ALLO STYLESHEET DELLA CALCOLATRICE-->
+  </body>
+</html>
